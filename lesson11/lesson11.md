@@ -29,3 +29,5 @@ password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 ```pam_faillock```
 
 https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatelya-posle-nekotorogo-kolichestva-neudachnyh-popytok-vhoda-v-sistemu/
+
+# Час життя паролю - 90 днів
