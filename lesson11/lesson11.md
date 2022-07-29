@@ -38,7 +38,7 @@ https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatel
 
 * Змінюємо файл `/etc/pam.d/common-auth`
 
-![](common_auth.png)
+![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
 
 ```diff
 + auth     required       pam_faillock.so preauth
