@@ -22,6 +22,9 @@ password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 
 І звісно параметр `enforce_for_root`, щоб обмеження спрацьовували і з суперкористувачем
 
+# Вимоги до паролів
+```pam_cracklib```
+
 # Блокуємо користувача після 5 введень неправильного паролю
 ```pam_faillock```
 
