@@ -23,4 +23,6 @@ password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 І звісно параметр `enforce_for_root`, щоб обмеження спрацьовували і з суперкористувачем
 
 # Блокуємо користувача після 5 введень неправильного паролю
+```pam_faillock```
+
 https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatelya-posle-nekotorogo-kolichestva-neudachnyh-popytok-vhoda-v-sistemu/
