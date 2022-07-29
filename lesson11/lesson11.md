@@ -32,6 +32,20 @@ password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 
 https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatelya-posle-nekotorogo-kolichestva-neudachnyh-popytok-vhoda-v-sistemu/
 
+* Змніюємо файл `/etc/pam.d/common-auth`
+
+```diff
++ auth     required       pam_faillock.so preauth
+auth    [success=1 default=ignore]      pam_unix.so nullok
++ auth     [default=die]  pam_faillock.so authfail
++ auth     sufficient     pam_faillock.so authsucc
+# here's the fallback if no module succeeds
+auth    requisite                       pam_deny.so
++ account  required       pam_faillock.so
+```
+
+* Інофрмація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
+
 # Час життя паролю - 90 днів
 
 ```bash
