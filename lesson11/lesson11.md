@@ -44,7 +44,7 @@ auth    requisite                       pam_deny.so
 + account  required       pam_faillock.so
 ```
 
-* Інофрмація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
+* Інформація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
 
 # Час життя паролю - 90 днів
 
