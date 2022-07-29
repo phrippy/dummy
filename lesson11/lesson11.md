@@ -37,7 +37,9 @@ ___
 https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatelya-posle-nekotorogo-kolichestva-neudachnyh-popytok-vhoda-v-sistemu/
 
 * Змінюємо файл `/etc/pam.d/common-auth`
-!(common_auth.png)
+
+![](common_auth.png)
+
 ```diff
 + auth     required       pam_faillock.so preauth
 auth    [success=1 default=ignore]      pam_unix.so nullok
