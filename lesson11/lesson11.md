@@ -56,21 +56,16 @@ sudo passwd test
 ___
 
 # Вимоги до паролів
-```pam_cracklib```
-Або
-```pam_pwquality```
-Уточнити
 
-*Порівняти налаштування цього модулю за замовчуванням в Debian і ArchLinux*
+Для встановлення вимог до паролів будемо використувувати модуль `pam_cracklib`. В базовій поставці я його не знайшов, тому довелось встановити з репозиторію
+```bash
+sudo apt install libpam-cracklib
+```
 
 ___
 
 # Блокуємо користувача після 5 введень неправильного паролю
-```pam_faillock```
-
-https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatelya-posle-nekotorogo-kolichestva-neudachnyh-popytok-vhoda-v-sistemu/
-
-* Змінюємо файл `/etc/pam.d/common-auth`
+Для цього використовуватимемо модудь `pam_faillock`. Щоб його налаштувати, додамо відповідні рядки в файл `/etc/pam.d/common-auth`
 
 ![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
 
@@ -84,12 +79,17 @@ https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatel
 ```
 
 * Інформація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
-
+* Також доступна команда `faillock`, яка фактично відображає вміст цього каталогу в зручному форматі
 ___
 
 # Час життя паролю - 90 днів
 
-```bash
-sudo chage -M 90 username
-sudo chage -l username
+Щоб задати час життя паролю для нових користувачів, потрібно змінити файл `/etc/login.defs`, задавши значення параметру `PASS_MAX_DAYS` рівним 90
+
+```diff
+- PASS_MAX_DAYS   99999
++ PASS_MAX_DAYS   90
 ```
+
+Але це налаштування для майбутніх користувачів. Для вже існуючих користувачів параметр був збережений в файлі `/etc/shadow`. Якщо потрібно змінити максимальну тривалість життя паролю для вже існуючого користувача, потрібно скористатися командою `sudo chage -M 90 <username>`, де `<username>`
+ - імʼя конкретного користувача. Щоб дізнатись поточні обмеження користувача, потрібно скористатися командою `sudo chage -l <username>`. Якщо запитується інформація про поточного користувача, можна `sudo` опустити
