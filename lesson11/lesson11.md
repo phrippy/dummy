@@ -16,7 +16,7 @@
 Редагуємо той же самий файл `/etc/pam.d/common-password`, але в цьому варіанті не редагуємо відповідний рядок, а додаємо новий рядок над ним. Повинно вийти так:
 ```diff
 + password        required        pam_pwhistory.so remember=4 retry=3 enforce_for_root
-password        [success=1 default=ignore]      pam_unix.so obscure yescryp
+  password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 ```
 Окрім безпосередньо параметра `remember=4`, який зберігатиме чотири останні паролі, я додав `retry=3`, щоб при зміні паролю було три спроби, інакше якщо ввести вже збережений старий пароль при зміні паролю командою `passwd`, то програма просто завершиться з помилкою. А так повідомить, що було введено старий пароль і дасть ще три спроби.
 
@@ -45,10 +45,10 @@ https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatel
 
 ```diff
 + auth     requisite       pam_faillock.so preauth
-auth    [success=1 default=ignore]      pam_unix.so nullok
+  auth    [success=1 default=ignore]      pam_unix.so nullok
 + auth     sufficient     pam_faillock.so authsucc
-# here's the fallback if no module succeeds
-auth    requisite                       pam_deny.so
+  # here's the fallback if no module succeeds
+  auth    requisite                       pam_deny.so
 + account  required       pam_faillock.so
 ```
 
