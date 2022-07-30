@@ -44,9 +44,8 @@ https://blog.sedicomm.com/2018/10/24/kak-zablokirovat-uchetnuyu-zapis-polzovatel
 ![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
 
 ```diff
-+ auth     required       pam_faillock.so preauth
++ auth     requisite       pam_faillock.so preauth
 auth    [success=1 default=ignore]      pam_unix.so nullok
-+ auth     [default=die]  pam_faillock.so authfail
 + auth     sufficient     pam_faillock.so authsucc
 # here's the fallback if no module succeeds
 auth    requisite                       pam_deny.so
