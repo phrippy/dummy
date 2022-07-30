@@ -12,7 +12,8 @@
 ```diff
 
 - password        [success=1 default=ignore]      pam_unix.so obscure yescrypt
-+ password        [success=1 default=ignore]      pam_unix.so obscure yescrypt remember=4```
++ password        [success=1 default=ignore]      pam_unix.so obscure yescrypt remember=4
+```
 
 ## Модуль pam_pwhistory.so
 Ключова відмінність від попереднього модуля - підримка обмежень в тому числі і для суперкористувача.
