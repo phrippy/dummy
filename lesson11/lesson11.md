@@ -78,6 +78,19 @@ ___
 + account  required       pam_faillock.so
 ```
 
+Для налаштування `pam_faillock` потрібно відредагувати файл `/etc/security/faillock.conf`.
+
+Треба задати параметр `deny` рівним 5
+
+```diff
+# Deny access if the number of consecutive authentication failures
+# for this user during the recent interval exceeds n tries.
+# The default is 3.
+- # deny = 3
++ deny = 5
+#
+```
+
 * Інформація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
 * Також доступна команда `faillock`, яка фактично відображає вміст цього каталогу в зручному форматі
 ___
