@@ -8,7 +8,11 @@
 ## Модуль pam_unix.so
 Редагуємо файл `/etc/pam.d/common-password`. Знаходимо перший незакоментований рядок, в якому згадується `pam_unix.so` і дописуємо в ньому через пробіл `remember=4`
 
-В мене вийшло так: `password        [success=1 default=ignore]      pam_unix.so obscure yescrypt remember=4`
+В мене вийшло так:
+```diff
+
+- password        [success=1 default=ignore]      pam_unix.so obscure yescrypt
++ password        [success=1 default=ignore]      pam_unix.so obscure yescrypt remember=4```
 
 ## Модуль pam_pwhistory.so
 Ключова відмінність від попереднього модуля - підримка обмежень в тому числі і для суперкористувача.
