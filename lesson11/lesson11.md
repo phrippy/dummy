@@ -27,12 +27,12 @@
   password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 ```
 
-Щоб дати користувачу три спроби для введення паролю замість однієї, можна додати параметр `retry=3`. А щоб обмежитити і суперкористувача (заради чого ми, власне, і зібралися використовувати модуль `pam_pwhistory.so`, треба додати параметр `enforce_for_root`. Дописуємо ці параметри через пробіл в кінець рядка, в якому викликається модуль `pam_pwhistory.so` з типом `password`
+Щоб обмежитити і суперкористувача (заради чого ми, власне, і зібралися використовувати модуль `pam_pwhistory.so`, треба додати параметр `enforce_for_root`. Дописуємо цей параметр через пробіл в кінець рядка, в якому викликається модуль `pam_pwhistory.so` з типом `password`
 
 Кінцевий рабочий варіант виглядатиме так:
 
 ```diff
-+ password        required pam_pwhistory.so remember=4 retry=3 enforce_for_root
++ password        required pam_pwhistory.so remember=4 enforce_for_root
   password        [success=1 default=ignore]      pam_unix.so obscure yescryp
 ```
 
