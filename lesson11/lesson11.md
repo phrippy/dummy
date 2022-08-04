@@ -116,6 +116,17 @@ auth     required       pam_deny.so
 account  required       pam_faillock.so
 ```
 
+```diff
++ V3
++ auth     required       pam_faillock.so preauth
+  auth    [success=1 default=ignore]      pam_unix.so nullok
++ auth     [default=die]  pam_faillock.so authfail
++ auth     sufficient     pam_faillock.so authsucc
+  # here's the fallback if no module succeeds
+  auth    requisite                       pam_deny.so
++ account  required       pam_faillock.so
+```
+
 Для налаштування `pam_faillock` потрібно відредагувати файл `/etc/security/faillock.conf`.
 
 Треба задати параметр `deny` рівним 5
