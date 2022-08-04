@@ -95,29 +95,6 @@ ___
 ![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
 
 ```diff
-+ auth     requisite       pam_faillock.so preauth
-  auth    [success=1 default=ignore]      pam_unix.so nullok
-+ auth     sufficient     pam_faillock.so authsucc
-  # here's the fallback if no module succeeds
-  auth    requisite                       pam_deny.so
-+ account  required       pam_faillock.so
-```
-
-
-
-```
-V2:
-auth     required       pam_faillock.so preauth
-# optionally use requisite above if you do not want to prompt for the password
-# on locked accounts
-auth     sufficient     pam_unix.so
-auth     [default=die]  pam_faillock.so authfail
-auth     required       pam_deny.so
-account  required       pam_faillock.so
-```
-
-```diff
-+ V3
 + auth     required       pam_faillock.so preauth
   auth    [success=1 default=ignore]      pam_unix.so nullok
 + auth     [default=die]  pam_faillock.so authfail
@@ -139,6 +116,11 @@ account  required       pam_faillock.so
 + deny = 5
 #
 ```
+
+Після невдалого введення паролю 5 разів на протязі 15 хвилин (`fail_interval = 900`) аккаунт буде заблоковано на 10 хвилин (`unlock_time = 600`)
+
+![Спрацювання модулю pam_faillock](faillock_result.png)
+
 
 * Інформація про невдалі логіни буде зберігатися в каталозі `/var/run/faillock/`
 * Також доступна команда `faillock`, яка фактично відображає вміст цього каталогу в зручному форматі
