@@ -103,6 +103,19 @@ ___
 + account  required       pam_faillock.so
 ```
 
+
+
+```
+V2:
+auth     required       pam_faillock.so preauth
+# optionally use requisite above if you do not want to prompt for the password
+# on locked accounts
+auth     sufficient     pam_unix.so
+auth     [default=die]  pam_faillock.so authfail
+auth     required       pam_deny.so
+account  required       pam_faillock.so
+```
+
 Для налаштування `pam_faillock` потрібно відредагувати файл `/etc/security/faillock.conf`.
 
 Треба задати параметр `deny` рівним 5
