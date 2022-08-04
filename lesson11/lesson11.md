@@ -71,7 +71,18 @@ sudo apt install libpam-cracklib
   # here's the fallback if no module succeeds
   password        requisite                       pam_deny.so
 ```
-password        requisite                       pam_cracklib.so retry=3 minlen=8 difok=3
+
+В принципі, цього достатньо для функціонування модулю, обмеження на нові паролі вже працюють. Відредагуємо файл відповідно до задання:
+
+```diff
+  # here are the per-package modules (the "Primary" block)
+- password        requisite                       pam_cracklib.so retry=3 minlen=8 difok=3
++ password        requisite                       pam_cracklib.so retry=3 minlen=8 lcredit=-1 ucredit=-2 dcredit=-2 ocredit=-1
+  password        [success=1 default=ignore]      pam_unix.so obscure use_authtok try_first_pass yescrypt
+  # here's the fallback if no module succeeds
+  password        requisite                       pam_deny.so
+```
+
 ___
 
 # Блокуємо користувача після 5 введень неправильного паролю
