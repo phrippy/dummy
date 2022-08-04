@@ -72,7 +72,7 @@ sudo apt install libpam-cracklib
   password        requisite                       pam_deny.so
 ```
 
-В принципі, цього достатньо для функціонування модулю, обмеження на нові паролі вже працюють. Відредагуємо файл відповідно до задання:
+В принципі, цього достатньо для функціонування модулю, обмеження на нові паролі вже працюють. Відредагуємо файл відповідно до завдання:
 
 ```diff
   # here are the per-package modules (the "Primary" block)
@@ -82,6 +82,10 @@ sudo apt install libpam-cracklib
   # here's the fallback if no module succeeds
   password        requisite                       pam_deny.so
 ```
+
+Спробуємо встановити паролі, що не відповідають новій політиці:
+
+![Перевірка обмежень pam_cracklib](cracklib_test.png)
 
 ___
 
