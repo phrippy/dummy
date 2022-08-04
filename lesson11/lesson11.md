@@ -98,8 +98,6 @@ ___
 # Блокуємо користувача після 5 введень неправильного паролю
 Для цього використовуватимемо модудь `pam_faillock`. Щоб його налаштувати, додамо відповідні рядки в файл `/etc/pam.d/common-auth`
 
-![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
-
 ```diff
 + auth     required       pam_faillock.so preauth
   auth    [success=1 default=ignore]      pam_unix.so nullok
@@ -109,6 +107,9 @@ ___
   auth    requisite                       pam_deny.so
 + account  required       pam_faillock.so
 ```
+
+![Налаштування файлу /etc/pam.d/common-auth](common_auth.png)
+
 
 Для налаштування `pam_faillock` потрібно відредагувати файл `/etc/security/faillock.conf`.
 
