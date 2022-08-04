@@ -83,9 +83,15 @@ sudo apt install libpam-cracklib
   password        requisite                       pam_deny.so
 ```
 
+![Налаштування обмежень pam_cracklib](cracklib_set.png)
+
 Спробуємо встановити паролі, що не відповідають новій політиці:
 
 ![Перевірка обмежень pam_cracklib](cracklib_test.png)
+
+До речі, якщо змінювати пароль, використовуючи права суперкористувача, то пароль буде встановлено, ігноруючи обмеження `pam_cracklib`. Але буде виведено попередження
+
+![Перевірка обмежень pam_cracklib через sudo](cracklib_test_root.png)
 
 ___
 
