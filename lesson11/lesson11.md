@@ -67,8 +67,8 @@ sudo apt install libpam-cracklib
 ```diff
   # here are the per-package modules (the "Primary" block)
 + password        requisite                       pam_cracklib.so retry=3 minlen=8 difok=3
--  password        [success=1 default=ignore]      pam_unix.so obscure yescrypt
-+  password        [success=1 default=ignore]      pam_unix.so obscure use_authtok try_first_pass yescrypt
+- password        [success=1 default=ignore]      pam_unix.so obscure yescrypt
++ password        [success=1 default=ignore]      pam_unix.so obscure use_authtok try_first_pass yescrypt
   # here's the fallback if no module succeeds
   password        requisite                       pam_deny.so
 ```
