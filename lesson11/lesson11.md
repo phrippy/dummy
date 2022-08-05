@@ -117,12 +117,12 @@ ___
 Треба задати параметр `deny` рівним 5. Інші параметри можна залишити за замовчуванням
 
 ```diff
-# Deny access if the number of consecutive authentication failures
-# for this user during the recent interval exceeds n tries.
-# The default is 3.
+  # Deny access if the number of consecutive authentication failures
+  # for this user during the recent interval exceeds n tries.
+  # The default is 3.
 - # deny = 3
 + deny = 5
-#
+  #
 ```
 
 Після невдалого введення паролю 5 разів ( `deny = 5` ) на протязі 15 хвилин ( `fail_interval = 900` ) аккаунт буде заблоковано на 10 хвилин ( `unlock_time = 600` )
