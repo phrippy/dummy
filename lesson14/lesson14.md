@@ -47,7 +47,7 @@ LVM немає в базовій системі, так само, як і mdadm.
 
 ![Пошук пакету LVM в репозиторії](lvm-apt-search.png)
 
-Запустимо команду `sudo apt update && sudo apt -y install mdadm` і почнемо роботу з LVM
+Запустимо команду `sudo apt update && sudo apt -y install lvm2` і почнемо роботу з LVM
 
 ## Створюємо логічний LVM-том поверх двох RAID-масивів
 *TODO*
