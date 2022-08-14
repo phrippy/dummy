@@ -20,8 +20,11 @@ host from
         IdentityFile	 ~/.ssh/sshfs_key
 ```
 Оскільки все налаштовано, тепер достатньо дати команду `ssh-copy-id from`. Нас повинні запитати пароль
+
 Того ж ефекту можна добитися, якщо передати ключ вручну: `cat ~/.ssh/sshfs_key.pub | ssh 'tee -a ~/.ssh/authorized_keys'`
+
 Якщо парольний доступ для root заборонений, можна передати свій ключ через sudo: `cat ~/.ssh/sshfs_key.pub | ssh from 'sudo tee -a ~root/.ssh/authorized_keys'`
+
 2. скопировать ключи на другой линукс хост (виртуальную машину)
 
 # Забороняємо доступ по паролю
