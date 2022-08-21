@@ -50,7 +50,9 @@ delete () {
 
 help () {
   echo "Usage:"
-  echo "$(basename $0) [ -c | --create | -d | --delete ] username [password]"
+  echo "$(basename $0) [ -c | --create ] username [password]"
+  echo "$(basename $0) [ -d | --delete ] username" 
+  echo "$(basename $0) [ -h | --help ]" 
 }
 
 # Підтримка короткої довідки
