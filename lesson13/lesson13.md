@@ -140,9 +140,9 @@ sudo chmod -v g+s "${DIRECTORY}"
 sudo chmod -v o+t "${DIRECTORY}"
 
 # Створюємо тестовий файл і жорстке та м'яке посилання на нього
-touch "${DIRECTORY}/testfile"
-ln --physical --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/hardlink_file"
-ln --symbolic --relative --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/softlink_file"
+touch "${DIRECTORY}/testfile.txt"
+ln --physical --verbose "${DIRECTORY}/testfile.txt" "${DIRECTORY}/hardlink_file.txt"
+ln --symbolic --relative --verbose "${DIRECTORY}/testfile.txt" "${DIRECTORY}/softlink_file.txt"
 
 # Створюємо десять файлів з випадковим розміром і даними
 for i in {0..9}
@@ -159,3 +159,11 @@ tar cvzf "${DIRECTORY}/archive.tar.gz" $(basename $DIRECTORY)/*.dat
 # можна використовувати альтернативний синтаксис:
 # tar cf - $(basename $DIRECTORY)/*.dat | gzip -9 > "${DIRECTORY}/archive.tar.gz"
 ```
+
+В результаті отримаємо архів з такою структурою файлів:
+
+![Структура архіву з файлами](archive.png)
+
+Структура файлів і каталогів, отримана за допомогою команди `ls -l --sort=extension task`:
+
+![Структура каталогу task](taskdir.png)

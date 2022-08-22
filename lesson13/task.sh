@@ -40,9 +40,9 @@ sudo chmod -v g+s "${DIRECTORY}"
 sudo chmod -v o+t "${DIRECTORY}"
 
 # Створюємо тестовий файл і жорстке та м'яке посилання на нього
-touch "${DIRECTORY}/testfile"
-ln --physical --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/hardlink_file"
-ln --symbolic --relative --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/softlink_file"
+touch "${DIRECTORY}/testfile.txt"
+ln --physical --verbose "${DIRECTORY}/testfile.txt" "${DIRECTORY}/hardlink_file.txt"
+ln --symbolic --relative --verbose "${DIRECTORY}/testfile.txt" "${DIRECTORY}/softlink_file.txt"
 
 # Створюємо десять файлів з випадковим розміром і даними
 for i in {0..9}

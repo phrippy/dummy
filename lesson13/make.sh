@@ -13,4 +13,5 @@ cd `dirname $0`
 	echo '```bash'
 	cat task.sh
 	echo '```'
+	cat tail.md
 ) > lesson13.md
