@@ -1,20 +1,3 @@
-Создать пользователя:
-
-попробовать создать скрипт, который создаст пользователя, задаст ему пароль и добавит ему права sudo
-
-Создать баш скрипт, который:
-
-* создает в домашней папке пользователя папку task
-* определяет все группы, доступные в системе и создает подпапки в папке task - имя папки = название группы.
-* выставить для папок владельцем пользователя root группу - соответствующую группу и разрешения 607
-* установит SGID и sticky bit для папки task
-* создать файл test (можно другое имя), создать хард линк и софт линк к этому файлу
-* создать 10 файлов, заархивировать их архиватором tar и сжать gzip (архив должен содержать папку, в которой расположены эти файлы)
-
-Отчет - текст скрипта и скриншот с файловой структурой.
-
-# Скрипт створення користувача
-```bash
 #!/bin/bash
 
 create () {
@@ -93,46 +76,3 @@ PASSWORD=${2-${DEFAULT_PASSWORD}}
 
 ${MODE-create} "${USERNAME}" "${PASSWORD}"
 echo Done!
-```
-
-# Скрипт створення каталогу task
-
-```bash
-#!/bin/bash
-DIRECTORY="$HOME/task"
-if [[ ! -e "${DIRECTORY}" ]] ; then
-  mkdir -pv "${DIRECTORY}"
-fi
-
-if [[ ! -d "${DIRECTORY}" ]] ; then
- echo "${DIRECTORY} is not directory!"
- echo "Aborting..."
- exit 1
-fi
-
-for i in $(groups)
-  do
-    mkdir -pv "${DIRECTORY}/$i"
-done
-
-for i in "${DIRECTORY}"/*
-  do
-    sudo chown -v root:$(basename "$i") "${i}"
-    sudo chmod -v 607 "${i}"
-done
-
-sudo chmod -v g+s "${DIRECTORY}"
-sudo chmod -v o+t "${DIRECTORY}"
-
-touch "${DIRECTORY}/testfile"
-ln --physical --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/hardlink_file"
-ln --symbolic --relative --verbose "${DIRECTORY}/testfile" "${DIRECTORY}/softlink_file"
-
-for i in {0..9}
-  do
-    dd if=/dev/urandom of="$DIRECTORY/file${i}.dat" bs=1 count=$RANDOM
-done
-
-cd "${DIRECTORY}"/..
-tar czf "${DIRECTORY}/archive.tar.gz" $(basename $DIRECTORY)/*.dat
-```
