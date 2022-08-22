@@ -35,7 +35,7 @@ for i in "${DIRECTORY}"/*
     sudo chmod -v 607 "${i}"
 done
 
-# Додаємо до цільового каталогу біти sguid і stiky
+# Додаємо до цільового каталогу біти sguid і sticky
 sudo chmod -v g+s "${DIRECTORY}"
 sudo chmod -v o+t "${DIRECTORY}"
 
