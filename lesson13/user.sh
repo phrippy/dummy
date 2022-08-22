@@ -35,10 +35,17 @@ delete () {
 # Підтримка короткої довідки
 # Потрібно викликати скрипт з параметрами -h або --help
 help () {
-  echo "Usage:"
-  echo "$(basename $0) [ -c | --create ] username [password]"
-  echo "$(basename $0) [ -d | --delete ] username"
-  echo "$(basename $0) [ -h | --help ]"
+  cat << EOF
+Usage:
+
+$0 username [password]
+$0 [ -c | --create ] username [password]
+
+$0 [ -d | --delete ] username
+
+$0 [ -h | --help ]
+
+EOF
 }
 
 case "${1}" in
