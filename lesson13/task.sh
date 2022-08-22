@@ -10,7 +10,11 @@ if [[ ! -d "${DIRECTORY}" ]] ; then
  exit 1
 fi
 
-for i in $(groups)
+groups1=$(cat /etc/group | grep -oP '^.*?(?=(:))')
+groups2=$(cat /etc/group | tr ':' ' ' | awk '{print $1}')
+
+
+for i in $groups1
   do
     mkdir -pv "${DIRECTORY}/$i"
 done
