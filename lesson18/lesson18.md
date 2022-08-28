@@ -3,3 +3,12 @@
 * удалит файлы (скопированные на удаленный компьютер на первом шаге) при помощи xarg
 * создат на удаленном компьютере два файла
 * скопирует их на локальный компьютер
+```bash
+find $PWD/* -maxdepth 0 -type f
+```
+```bash
+for i in {0..9}
+  do
+    dd if=/dev/urandom of="$DIRECTORY/file${i}.dat" bs=1 count=$RANDOM
+done
+```
