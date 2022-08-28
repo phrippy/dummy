@@ -23,10 +23,12 @@
 ![Зміна шеллу за замовчуванням](chsh.png)
 
 * проверить какой текущий шелл проверкой текущих переменных окружения
-`echo $BASH`
+```echo $BASH```
 
 * попробовать сравнить переменные окружения из tty & ssh сессий
-`diff -u <(env|sort) <(ssh localhost env|sort)`
+```diff -u <(env|sort) <(ssh localhost env|sort) | tig```
+![Різниця змінних середовища в tty і ssh](env_diff.png)
 
 * проверить переменные окружения командой env
-`env`
+```env```
+![Вивід команди env](env.png)
