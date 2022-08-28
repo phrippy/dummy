@@ -1,20 +1,26 @@
 * проверить сколько и каких шеллов установлено в системе
-`cat /etc/shells`
+```cat /etc/shells```
+![Список шеллів в файлі /etc/shells](etc_shells.png)
 
 * проверить какой текущий шелл командой ps
-`ps`
+```ps```
+![Вивід команди ps](ps.png)
 
 * проверить содержимое переменной SHELL
-`echo $SHELL`
+```echo $SHELL```
+![Значення змінної $SHELL](shell_var.png)
 
 * проверить какой текущий шелл командой readlink
-`readlink /proc/$$/exe`
+```readlink /proc/$$/exe```
+![Шлях до поточного шеллу по команді readlink](readlink_proc.png)
 
 * проверить текущую версию шелла
-`$SHELL --version`
+```$SHELL --version```
+![Версія шеллу](shell_version.png)
 
 * в случае, если текущий шелл не bash - установить его текущим дефолтным
-`chsh -s /bin/bash`
+```chsh -s /bin/bash```
+![Зміна шеллу за замовчуванням](chsh.png)
 
 * проверить какой текущий шелл проверкой текущих переменных окружения
 `echo $BASH`
