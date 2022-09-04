@@ -75,9 +75,21 @@ makefiles_local(){
 	COUNTER="${1-${DEFAULT_FILES}}"
 	for i in $(seq 1 ${COUNTER})
 	 do
-		 FILENAME="$DIRECTORY/local_file${i}.dat"
+		 FILENAME="$DIRECTORY/local_file_$(date +%s_%3N).dat"
 		 echo "Створюю локальний файл '${FILENAME}'"
 		 dd if=/dev/urandom of="$FILENAME" bs=1 count=$RANDOM 2> /dev/null
+	done
+}
+
+makefiles_remote(){
+	check_remote_dir $REMOTE_DIRECTORY_FROM || exit $?
+	DEFAULT_FILES=2
+	COUNTER="${1-${DEFAULT_FILES}}"
+	for i in $(seq 1 ${COUNTER})
+	 do
+		 FILENAME="$REMOTE_DIRECTORY_FROM/remote_file_$(date +%s_%3N).dat"
+		 echo "Створюю віддалений файл '${FILENAME}'"
+		 ssh "${REMOTE_HOST}" dd if=/dev/urandom of="$FILENAME" bs=1 count=$RANDOM 2> /dev/null
 	done
 }
 ```
@@ -96,6 +108,7 @@ get_local_files
 copy_to_remotedir
 list_remote_files
 rm_local_files
+makefiles_remote 2
 ```
 
 Футер
