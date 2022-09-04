@@ -3,6 +3,7 @@ SCRIPT_DIR="$(dirname $0)"
 source "${SCRIPT_DIR}/lib.sh"
 if [ $SCRIPT_DIR == $DIRECTORY ] ; then
 	DIRECTORY="$DIRECTORY/workdir"
+	mkdir -v "$DIRECTORY"
 fi
 get_local_files
 copy_to_remotedir
