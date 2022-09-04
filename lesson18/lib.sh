@@ -1,9 +1,3 @@
-export DIRECTORY=${PWD}
-export REMOTE_HOST='remote_host'
-export REMOTE_DIRECTORY_TO='~/remote_to'
-export REMOTE_DIRECTORY_FROM='~/remote_from'
-export MIN_FILES_TO=3
-export MIN_FILES_FROM=2
 declare -xa FILES_TO_COPY=()
 declare -xa FILES_FROM_COPY=()
 
