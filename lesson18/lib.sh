@@ -45,8 +45,7 @@ get_remote_files(){
 }
 
 copy_from_remotedir(){
-	echo $FUNCNAME
-
+	printf "${REMOTE_HOST}:%s\n" "${FILES_FROM_COPY[@]}" | xargs -I {} scp "{}" "${DIRECTORY}"
 }
 
 copy_to_remotedir() {
