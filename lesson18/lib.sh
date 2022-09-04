@@ -37,14 +37,11 @@ rm_local_files(){
 	printf "%s\n" "${FILES_TO_COPY[@]}" | xargs rm -v
 }
 
-makefiles_remote(){
-	echo $FUNCNAME
-
-}
-
 get_remote_files(){
-	echo $FUNCNAME
-
+	FILES_FROM_COPY=()
+	while IFS= read -r -d $'\0' ; do
+		FILES_FROM_COPY+=("${REPLY}")
+	done < <(ssh "${REMOTE_HOST}" find "${REMOTE_DIRECTORY_FROM}"/* -maxdepth 0 -type f -print0 2> /dev/null)
 }
 
 copy_from_remotedir(){
@@ -83,8 +80,11 @@ makefiles_remote(){
 	DEFAULT_FILES=2
 	COUNTER="${1-${DEFAULT_FILES}}"
 	for i in $(seq 1 ${COUNTER})
-	 do
-		 FILENAME="$REMOTE_DIRECTORY_FROM/remote_file_$(date +%s_%3N).dat"
+		do
+			FILENAME="$REMOTE_DIRECTORY_FROM/remote_file_$(date +%s_%3N).dat"
+			FILES_FROM_COPY=()
+	while IFS= read -r -d $'\0' ; do
+		FILES_FROM_COPY+=("${REPLY}")
 		 echo "Створюю віддалений файл '${FILENAME}'"
 		 ssh "${REMOTE_HOST}" dd if=/dev/urandom of="$FILENAME" bs=1 count=$RANDOM 2> /dev/null
 	done
