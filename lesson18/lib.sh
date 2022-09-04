@@ -1,6 +1,3 @@
-Спочатку створимо окремий файл, в якому зберігатимемо окремі функції для виконання завдання. Так основний скрипт виглядатиме естетичніше. Збережемо його в файлі `lib.sh`:
-
-```bash
 export DIRECTORY=${PWD}
 export REMOTE_DIRECTORY_TO='~/remote_to'
 export REMOTE_DIRECTORY_FROM='~/remote_from'
@@ -79,21 +76,3 @@ makefiles_local(){
 		 dd if=/dev/urandom of="$FILENAME" bs=1 count=$RANDOM 2> /dev/null
 	done
 }
-```
-
-Претекст
-
-```bash
-#!/bin/bash
-SCRIPT_DIR="$(dirname $0)"
-source "${SCRIPT_DIR}/lib.sh"
-if [ $SCRIPT_DIR == $DIRECTORY ] ; then
-	DIRECTORY="$DIRECTORY/workdir"
-fi
-get_local_files
-copy_to_remotedir
-list_remote_files
-rm_local_files
-```
-
-Футер
