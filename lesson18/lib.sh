@@ -1,4 +1,5 @@
 export DIRECTORY=${PWD}
+export REMOTE_HOST='remote_host'
 export REMOTE_DIRECTORY_TO='~/remote_to'
 export REMOTE_DIRECTORY_FROM='~/remote_from'
 export MIN_FILES_TO=3
@@ -7,7 +8,7 @@ declare -xa FILES_TO_COPY=()
 declare -xa FILES_FROM_COPY=()
 
 check_remote_dir(){
-cat <<EOF | ssh remote_host bash
+cat <<EOF | ssh ${REMOTE_HOST} bash
 	if [ ! -e $1 ] ; then
 		mkdir -pv $1
 	else
@@ -28,7 +29,7 @@ get_local_files(){
 
 list_remote_files(){
 	echo -n "Список файлів у віддаленому каталозі "
-	ssh remote_host "echo ${REMOTE_DIRECTORY_TO} ; ls -lh ${REMOTE_DIRECTORY_TO}"
+	ssh ${REMOTE_HOST} "echo ${REMOTE_DIRECTORY_TO} ; ls -lh ${REMOTE_DIRECTORY_TO}"
 }
 
 rm_local_files(){
@@ -62,7 +63,7 @@ copy_to_remotedir() {
 	fi
 	check_remote_dir $REMOTE_DIRECTORY_TO || exit $?
 	for i in "${FILES_TO_COPY[@]}" ; do
-		scp "$i" remote_host:"${REMOTE_DIRECTORY_TO}"
+		scp "$i" ${REMOTE_HOST}:"${REMOTE_DIRECTORY_TO}"
 	done
 }
 
