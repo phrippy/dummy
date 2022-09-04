@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPT_DIR="$(dirname $0)"
+SCRIPT_DIR="$(dirname $(realpath $0))"
 source "${SCRIPT_DIR}/lib.sh"
 if [ $SCRIPT_DIR == $DIRECTORY ] ; then
 	DIRECTORY="$DIRECTORY/workdir"

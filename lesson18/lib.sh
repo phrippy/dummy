@@ -24,7 +24,7 @@ get_local_files(){
 	FILES_TO_COPY=()
 	while IFS= read -r -d $'\0' ; do
 		FILES_TO_COPY+=("${REPLY}")
-	done < <(find "${DIRECTORY}"/* -maxdepth 0 -type f -print0)
+	done < <(find "${DIRECTORY}"/* -maxdepth 0 -type f -print0 2> /dev/null)
 }
 
 list_remote_files(){
