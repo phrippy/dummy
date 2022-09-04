@@ -10,7 +10,3 @@ copy_to_remotedir
 list_remote_files
 rm_local_files
 makefiles_remote 2
-get_remote_files
-echo @@@
-echo ${FILES_FROM_COPY[@]}
-echo @@@
