@@ -10,6 +10,7 @@ CLIENT_DIR=/etc/openvpn/client
 key-init(){
   $COMMAND init-pki
   $COMMAND build-ca
+	mkdir /etc/openvpn/ccd	
   cp -v $PKI_DIR/ca.crt $SERVER_DIR
   cp -v $PKI_DIR/ca.crt $CLIENT_DIR
   openvpn --genkey secret ${PKI_DIR}/ta.key
