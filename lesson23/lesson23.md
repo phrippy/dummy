@@ -12,12 +12,13 @@ sudo apt install openvpn easy-rsa
 ```bash
 #!/bin/bash
 PKI_DIR=/etc/openvpn/pki
-PKI_DIR="$(realpath $PWD)"/pki
 EASYRSA=/usr/share/easy-rsa/easyrsa
 COMMAND="${EASYRSA} --pki-dir=${PKI_DIR}"
 SERVER_DIR=/etc/openvpn/server
 CLIENT_DIR=/etc/openvpn/client
 
+# Функція створює PKI (Public Key Infrastructure) - інфраструктуру відкритих ключів
+# Потім створює кореневий сертифікат і копіює його в директорії сервера і клієнта
 key-init(){
   $COMMAND init-pki
   $COMMAND build-ca
@@ -30,6 +31,7 @@ key-init(){
   cp -v ${PKI_DIR}/crl.pem $SERVER_DIR
 }
 
+# Створення і копіювання в потрібні директорії ключа і сертифіката для серверу
 key-server(){
   name=${1-server1}
   $COMMAND gen-req ${name} nopass
@@ -38,6 +40,10 @@ key-server(){
   cp -v ${PKI_DIR}/issued/${name}.crt $SERVER_DIR
 }
 
+# Створення і копіювання в потрібні директорії ключа і сертифіката для клієнту
+# Потрібно генерувати окремий ключ для кожного клієнту,
+# бо openvpn генерує однакові ip-адреси для однакових ключів
+# Щоб це обійти, потрібно додати рядок duplicate-cn в файл конфігурації серверу
 key-client(){
   name=${1-client1}
   $COMMAND gen-req ${name} nopass
