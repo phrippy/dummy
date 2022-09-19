@@ -86,7 +86,7 @@ proto udp
 dev tun
 user nobody
 # Варто звернути увагу: в залежності від дистрибутиву, група може називатись або nogroup, або nobody
-#group nobody
+# group nobody
 group nogroup
 persist-key
 persist-tun
