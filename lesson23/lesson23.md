@@ -77,7 +77,7 @@ key-server server1
 ```bash
 key-client client1
 ```
-Тепер прийшла пора створити файл конфігурації. Для цього теж можна написати скрипт:
+Тепер прийшла пора створити файл конфігурації. Заповнимо його наступним чином:
 
 
 ```bash
@@ -85,11 +85,14 @@ port 1194
 proto udp
 dev tun
 user nobody
+# Варто звернути увагу: в залежності від дистрибутиву, група може називатись або nogroup, або nobody
+#group nobody
 group nogroup
 persist-key
 persist-tun
 keepalive 10 120
 topology subnet
+# Діапазон ip-адрес, які отримуватимуть клієнти
 server 10.8.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "dhcp-option DNS 8.8.8.8"
@@ -97,6 +100,7 @@ push "dhcp-option DNS 8.8.4.4"
 push "redirect-gateway def1 bypass-dhcp"
 dh none
 ecdh-curve prime256v1
+# Тут вписуємо абсолютні шляхи до раніше згенерованих ключів і сертифікатів
 tls-crypt /etc/openvpn/server/ta.key
 crl-verify /etc/openvpn/server/crl.pem
 ca /etc/openvpn/server/ca.crt
@@ -110,7 +114,10 @@ tls-version-min 1.2
 tls-cipher TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256
 client-config-dir /etc/openvpn/ccd
 status /var/log/openvpn/status.log
+# Рівень логування
 verb 3
+# Видаємо різні ip-адреси для клієнтів, що зайшли під одним ключем.
+# Для лабораторного середовища так зручніше, але в реальних умовах було б правильніше генерувати окремий ключ для кожного клієнта
 duplicate-cn
 ```
 
