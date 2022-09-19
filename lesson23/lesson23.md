@@ -2,8 +2,9 @@
 
 ```bash
 sudo apt update
-sudo apt install openvpn easy-rsa
+sudo apt install openvpn
 ```
+![Встановлення необхідних пакетів](install.png)
 
 # Генеруємо необхідний набір ключів
 
