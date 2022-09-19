@@ -9,7 +9,7 @@ CLIENT_DIR=/etc/openvpn/client
 # Потім створює кореневий сертифікат і копіює його в директорії сервера і клієнта
 key-init(){
   $COMMAND init-pki
-  $COMMAND build-ca
+  $COMMAND build-ca nopass
 	mkdir /etc/openvpn/ccd	
   cp -v $PKI_DIR/ca.crt $SERVER_DIR
   cp -v $PKI_DIR/ca.crt $CLIENT_DIR

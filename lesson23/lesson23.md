@@ -22,7 +22,7 @@ CLIENT_DIR=/etc/openvpn/client
 # Потім створює кореневий сертифікат і копіює його в директорії сервера і клієнта
 key-init(){
   $COMMAND init-pki
-  $COMMAND build-ca
+  $COMMAND build-ca nopass
 	mkdir /etc/openvpn/ccd	
   cp -v $PKI_DIR/ca.crt $SERVER_DIR
   cp -v $PKI_DIR/ca.crt $CLIENT_DIR
@@ -66,6 +66,14 @@ source ./keygen.sh
 ```bash
 key-init
 ```
+
+![Назва сервера сертифікації](init-dialog.png)
+
+Тут можна залишити назву за замовчуванням, просто натискаємо Enter
+
+![Налаштування середовища](init-dialog.png)
+
+Середовище успішно створено
 
 Створимо ключі і сертифікати для сервера:
 
