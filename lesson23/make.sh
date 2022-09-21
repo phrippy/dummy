@@ -23,4 +23,6 @@ echo
 echo '```bash'
 cat ovpnmake.sh
 echo '```'
+echo
+cat ovpn-ready.md
 ) > lesson23.md
