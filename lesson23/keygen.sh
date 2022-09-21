@@ -7,6 +7,7 @@ CLIENT_DIR=/etc/openvpn/client
 
 # Функція створює PKI (Public Key Infrastructure) - інфраструктуру відкритих ключів
 # Потім створює кореневий сертифікат і копіює його в директорії сервера і клієнта
+# Для простоти центр сертифікації буде на тій же машині, що і сервер openvpn
 key-init(){
   $COMMAND init-pki
   $COMMAND build-ca nopass
