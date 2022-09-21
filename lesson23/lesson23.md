@@ -164,6 +164,9 @@ duplicate-cn
 client
 dev tun
 proto udp
+# DNS-ім'я сервера і порт.
+# Для лабораторного проекту можна скористатися функціоналом файлу /etc/hosts
+# В ідеалі було б непогано підняти DNS-сервер на спеціальній машині
 remote apophis 1194
 resolv-retry infinite
 nobind
