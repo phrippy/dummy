@@ -178,3 +178,33 @@ remote-cert-tls server
 cipher AES-128-GCM
 verb 1
 ```
+
+Отже, ми маємо набір файлів в директорії для клієнта:
+
+* ca.crt
+* client1.crt
+* client1.key
+* ta.key
+* client.conf
+
+Можна передати ці файли клієнту - хай вручну налаштовує VPN-з'єднання через відповідні діалоги операційної системи. Я пробував, це працює, але це довго і незручно. Краще згенеруємо один \*.ovpn файл і передамо його клієнту. Такий формат розуміють клієнти на всіх платформах. Потрібно зібрати вміст файлів в один. Для цього створимо наступний скрипт в каталозі з файлмами для клієнта:
+
+```bash
+#!/bin/bash
+name=${1-client1}
+(
+cat client.conf
+echo '<ca>'
+cat ca.crt
+echo '</ca>'
+echo '<cert>'
+cat ${name}.crt
+echo '</cert>'
+echo '<key>'
+cat ${name}.key
+echo '</key>'
+echo '<tls-crypt>'
+cat ta.key
+echo '</tls-crypt>'
+)> ${name}.ovpn
+```

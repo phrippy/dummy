@@ -17,4 +17,10 @@ echo
 echo '```bash'
 cat client.conf
 echo '```'
+echo
+cat ovpn.md
+echo
+echo '```bash'
+cat ovpnmake.sh
+echo '```'
 ) > lesson23.md
