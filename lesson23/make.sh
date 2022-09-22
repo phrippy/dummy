@@ -25,4 +25,10 @@ cat ovpnmake.sh
 echo '```'
 echo
 cat ovpn-ready.md
+echo
+echo '```bash'
+cat firefall.sh
+echo '```'
+echo
+cat firewall.md
 ) > lesson23.md
