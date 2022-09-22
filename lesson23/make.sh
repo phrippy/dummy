@@ -27,7 +27,7 @@ echo
 cat ovpn-ready.md
 echo
 echo '```bash'
-cat firefall.sh
+cat firewall.sh
 echo '```'
 echo
 cat firewall.md
