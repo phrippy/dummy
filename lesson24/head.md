@@ -13,3 +13,7 @@ sudo apt install docker-io
 # ЗАМІНИТИ СКРІНШОТ - ВСТАНОВЛЮЄМО DOCKER-IO ЗАМІСТЬ DOCKER
 
 ![Встановлення Docker](docker_install.png)
+
+# Файл конфігугації
+
+Файл буде розміщуватися в контейнері за адресою `/etc/nginx/nginx.conf` і матиме наступний контент:

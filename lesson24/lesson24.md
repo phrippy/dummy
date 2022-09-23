@@ -14,6 +14,10 @@ sudo apt install docker-io
 
 ![Встановлення Docker](docker_install.png)
 
+# Файл конфігугації
+
+Файл буде розміщуватися в контейнері за адресою `/etc/nginx/nginx.conf` і матиме наступний контент:
+
 ```Dockerfile
 FROM alpine:latest
 RUN apk add --no-cache nginx
@@ -56,7 +60,7 @@ http {
 
 # Статична html-сторінка
 
-Для html-сторінки використаємо файл із стандартної поставки nginx (якого, тим не менше, немає у варіанті від alpine linux):
+Для html-сторінки використаємо файл із стандартної поставки nginx (якого, тим не менше, немає у варіанті від alpine linux). Відповідно з конфігурацією, розмістимо його за адресою `/usr/share/nginx/html/index.html`:
 
 ```html
 <!DOCTYPE html>
