@@ -16,6 +16,7 @@ cat html.md
 echo
 echo '```html'
 cat index.html
+echo '```'
 echo
 cat footer.md
 ) > lesson24.md

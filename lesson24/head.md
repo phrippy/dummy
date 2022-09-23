@@ -7,7 +7,9 @@
 # Встановлюємо Docker:
 
 ```bash
-sudo apt install docker
+sudo apt install docker-io
 ```
+
+# ЗАМІНИТИ СКРІНШОТ - ВСТАНОВЛЮЄМО DOCKER-IO ЗАМІСТЬ DOCKER
 
 ![Встановлення Docker](docker_install.png)

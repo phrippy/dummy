@@ -7,8 +7,10 @@
 # Встановлюємо Docker:
 
 ```bash
-sudo apt install docker
+sudo apt install docker-io
 ```
+
+# ЗАМІНИТИ СКРІНШОТ - ВСТАНОВЛЮЄМО DOCKER-IO ЗАМІСТЬ DOCKER
 
 ![Встановлення Docker](docker_install.png)
 
@@ -80,6 +82,7 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
+```
 
 # Тегуємо образ
 
