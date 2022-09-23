@@ -14,6 +14,6 @@ sudo apt install docker-io
 
 ![Встановлення Docker](docker_install.png)
 
-# Файл конфігугації
+# Dockerfile
 
-Файл буде розміщуватися в контейнері за адресою `/etc/nginx/nginx.conf` і матиме наступний контент:
+Інструкція для docker буде розміщуватися в файлі `Dockerfile` і виглядатиме так:
