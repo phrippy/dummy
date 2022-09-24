@@ -14,7 +14,19 @@ docker build -t phrippy/nginx-custom:latest .
 
 ![Збирання Docker-образу](docker_build.png)
 
-# Завантажуємо на Dockerhub
+# Завантажуємо на dockerhub
+
+Перед безпосереднім завантаженням образу на dockerhub потрібно спочатку зареєструватись на сайті hub.docker.com і увійти у відповідний обліковий запис командою `docker login`. Завантажуємо образ командою:
+
+```bash
+docker push phrippy/nginx-custom
+```
+
+![Завантаження образу на dockerhub](docker_push.png)
+
+Як бачимо, завантаження пройшло успішно. Щоб додатково в цьому впевнитись, можна переглянути список репозиторіїв за url `hub.docker.com/repositories`:
+
+![Список репозиторіїв на dockerhub](docker_push_web.png)
 
 # Видаляємо створений локально образ
 
