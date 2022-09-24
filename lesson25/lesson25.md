@@ -5,3 +5,7 @@ ARG & ENV должны быть объявлены но не обязатель�
 можно использовать следующий проект:
 
 https://github.com/agoncal/agoncal-application-petstore-ee7
+
+`sudo apt install maven`
+
+
