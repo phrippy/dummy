@@ -1,8 +1,8 @@
-FROM maven:3.6.2-ibmjava-alpine as builder
+FROM maven:3.8.5-ibmjava-alpine as builder
 
 WORKDIR /src
 
-RUN apk update && apk add git
+RUN apk update && apk --no-cache add git
 RUN git clone https://github.com/agoncal/agoncal-application-petstore-ee7.git .
 
 RUN mvn clean compile
@@ -14,7 +14,10 @@ FROM openjdk
 
 WORKDIR /app
 
-COPY --from=builder /src/target/applicationPetstore.war .
+ENV FILENAME=applicationPetstore.war
 
-#ENTRYPOINT ["java", "-jar", "/app/applicationPetstore.war"]
-CMD java -jar /app/applicationPetstore.war
+COPY --from=builder /src/target/$FILENAME .
+
+RUN echo "java -jar $FILENAME" > script.sh && chmod +x script.sh
+
+ENTRYPOINT ["bash", "script.sh"]
