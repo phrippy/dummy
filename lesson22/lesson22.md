@@ -50,4 +50,4 @@
  
 * Тест швидкості за допомогою `ipref`
 
-![Тест швидкості через ipref, 100MBit Full Duplex](check2_ipref_100full.png)
+![Тест швидкості через ipref, 100MBit Full Duplex](check2_iperf_100full.png)
