@@ -34,9 +34,9 @@
 
 ![Вивід команди mii-tool, налаштування за замовчуванням](check1_mii.png)
  
-* Тест швидкості за допомогою `ipref`
+* Тест швидкості за допомогою `iperf`
 
-![Тест швидкості через ipref, налаштування за замовчуванням](check1_ipref.png)
+![Тест швидкості через iperf, налаштування за замовчуванням](check1_iperf.png)
 
 # Налаштування мережі після встановлення швидкості 100MBit, Full Duplex:
 
@@ -48,6 +48,20 @@
 
 ![Вивід команди mii-tool, 100MBit Full Duplex](check2_mii_100full.png)
  
-* Тест швидкості за допомогою `ipref`
+* Тест швидкості за допомогою `iperf`
 
 ![Тест швидкості через ipref, 100MBit Full Duplex](check2_iperf_100full.png)
+
+# Налаштування мережі після встановлення швидкості 100MBit, Half Duplex:
+
+* ethtool
+
+![Вивід команди ethtool, 100MBit Half Duplex](check2_ethtool_100half.png)
+
+* mii-tool
+
+![Вивід команди mii-tool, 100MBit Half Duplex](check2_mii_100half.png)
+ 
+* Тест швидкості за допомогою `iperf`
+
+![Тест швидкості через iperf, 100MBit Half Duplex](check2_iperf_100half.png)
