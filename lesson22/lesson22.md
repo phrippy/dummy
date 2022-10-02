@@ -65,3 +65,7 @@
 * Тест швидкості за допомогою `iperf`
 
 ![Тест швидкості через iperf, 100MBit Half Duplex](check2_iperf_100half.png)
+
+Схоже, в режимі half duplex 100MBit мережа почувається не дуже добре в режимі download. Це ж підтверджує і `speedtest-cli`:
+
+![Тест швидкості через speedtest-cli, 100MBit Half Duplex](cli.png)
