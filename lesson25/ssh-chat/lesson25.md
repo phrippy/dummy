@@ -41,6 +41,8 @@ ENV KEY=/key/id_rsa PORT=22
 
 Для збирання і запуску контейнеру напишемо такий скрипт:
 
+`# cat build-and-run.sh` 
+
 ```bash
 #!/bin/bash
 docker build -t ssh-chat .
