@@ -95,8 +95,7 @@ RUN apk update && apk --no-cache add git && \
 git clone https://github.com/agoncal/agoncal-application-petstore-ee7.git . && \
 mvn clean compile && \
 #mvn clean package && \
-mvn clean package
-#mvn clean package -Dmaven.test.skip=true
+mvn clean package -Dmaven.test.skip=true
 
 
 FROM openjdk:19-jdk-alpine3.16
@@ -117,6 +116,6 @@ CMD ["run"]
 
 ![Збирання і запуск проекту petstore](petstore.png)
 
-Якщо ж пропустити тести, (тобто замість `mvn clean package -Dmaven.test.skip=true` написати просто `mvn clean package`), то збирання проходить неуспішно:
+Якщо ж пропустити тести, (тобто замість `mvn clean package -Dmaven.test.skip=true` написати просто `mvn clean package`), то тести проходять неуспішно і збирання провалюється:
 
 ![Провалення build-тестів](petstore_testfail.png)

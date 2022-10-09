@@ -2,6 +2,6 @@
 
 ![Збирання і запуск проекту petstore](petstore.png)
 
-Якщо ж пропустити тести, (тобто замість `mvn clean package -Dmaven.test.skip=true` написати просто `mvn clean package`), то збирання проходить неуспішно:
+Якщо ж пропустити тести, (тобто замість `mvn clean package -Dmaven.test.skip=true` написати просто `mvn clean package`), то тести проходять неуспішно і збирання провалюється:
 
 ![Провалення build-тестів](petstore_testfail.png)
