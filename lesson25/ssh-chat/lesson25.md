@@ -58,6 +58,9 @@ docker run -d --rm -v /root/.ssh:/key -e KEY=$KEY -e PORT=$PORT -p 2222:$PORT --
 ```bash
 docker run -d --rm -p 2222:22 --name ssh-chat ssh-chat
 ```
+Спробуємо зібрати образ командою `docker build -t ssh-chat .`:
+
+![Збирання образу](build.png)
 
 Тепер напишемо скрипт, який запустить контейнер і передасть йому всі необхідні параметри:
 
