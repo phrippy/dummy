@@ -84,6 +84,8 @@ ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $USER@localhost 
 
 ![Запуск ssh-chat](chat.png)
 
+Схоже, що все працює так, як заплановано.
+
 Щодо збирання пропонованого в завданні проекту. Написав такий Dockerfile:
 
 ```Dockerfile
