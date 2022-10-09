@@ -55,6 +55,8 @@ docker run -it --rm -v /root/.ssh:/key -e KEY=$KEY -e PORT=$PORT -p 2222:$PORT -
 
 Тепер напишемо скрипт, який запустить контейнер і передасть йому всі необхідні параметри:
 
+`# cat connect.sh`
+
 ```bash
 #!/bin/bash
 USER=${1:-user}
