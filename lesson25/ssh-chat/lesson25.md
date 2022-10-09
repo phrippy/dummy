@@ -50,7 +50,13 @@ DEFAULT_KEY=/key/id_rsa
 DEFAULT_PORT=12345
 KEY=${1:-${DEFAULT_KEY}}
 PORT=${2:-${DEFAULT_PORT}}
-docker run -it --rm -v /root/.ssh:/key -e KEY=$KEY -e PORT=$PORT -p 2222:$PORT --name ssh-chat ssh-chat
+docker run -d --rm -v /root/.ssh:/key -e KEY=$KEY -e PORT=$PORT -p 2222:$PORT --name ssh-chat ssh-chat
+```
+
+Скрипт приймає в якості позиціних параметрів файл ssh-ключа і номер порту. Варто зазначити, що для цих параметрів ми маємо значення за замовчуванням, прописані в Dockerfile. Тому вказувати їх необов'язково, як і каталог для монтування в контейнер - ми можемо використовувати ключ, що прописаний в образі. Тоді скрипт можна замінити однією командою:
+
+```bash
+docker run -d --rm -p 2222:22 --name ssh-chat ssh-chat
 ```
 
 Тепер напишемо скрипт, який запустить контейнер і передасть йому всі необхідні параметри:
