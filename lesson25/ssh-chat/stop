@@ -1,0 +1,2 @@
+#!/bin/bash
+docker stop ssh-chat ; docker rmi ssh-chat
