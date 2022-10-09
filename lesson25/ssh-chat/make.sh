@@ -1,11 +1,11 @@
 #!/bin/bash
 (
-echo head.md
+cat head.md
 echo
 echo '```Dockerfile'
 cat Dockerfile
 echo '```'
-echo build.md
+cat build.md
 echo
 echo '```bash'
 cat build-and-run.sh
