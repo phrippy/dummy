@@ -1,3 +1,4 @@
 #!/bin/bash
+~/docker_project/restart.sh
 docker build -t ssh-chat .
 docker run -d --rm -p 2222:22 --name ssh-chat ssh-chat
