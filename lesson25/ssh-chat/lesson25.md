@@ -84,7 +84,7 @@ ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $USER@localhost 
 
 ![Запуск ssh-chat](chat.png)
 
-Dockerfile для пропонованого у проекті завдання:
+Щодо збирання пропонованого в завданні проекту. Написав такий Dockerfile:
 
 ```Dockerfile
 FROM maven:3.8.5-ibmjava-alpine as builder
@@ -95,7 +95,8 @@ RUN apk update && apk --no-cache add git && \
 git clone https://github.com/agoncal/agoncal-application-petstore-ee7.git . && \
 mvn clean compile && \
 #mvn clean package && \
-mvn clean package -Dmaven.test.skip=true
+mvn clean package
+#mvn clean package -Dmaven.test.skip=true
 
 
 FROM openjdk:19-jdk-alpine3.16
@@ -111,3 +112,11 @@ RUN echo "java -jar $FILENAME" > run && chmod +x run
 ENTRYPOINT ["sh"]
 CMD ["run"]
 ```
+
+Збирання проходить за інструкцією розробника, але при спробі запуску отримуємо помилку:
+
+![Збирання і запуск проекту petstore](petstore.png)
+
+Якщо ж пропустити тести, (тобто замість `mvn clean package -Dmaven.test.skip=true` написати просто `mvn clean package`), то збирання проходить неуспішно:
+
+![Провалення build-тестів](petstore_testfail.png)

@@ -17,11 +17,13 @@ echo '```bash'
 cat connect.sh
 echo '```'
 echo
-cat footer.md
+cat petstore.md
 echo
 echo '```Dockerfile'
 cat ../Dockerfile
 echo '```'
+echo
+cat footer.md
 ) > lesson25.md
 
 git commit -am 'upd' && git push
