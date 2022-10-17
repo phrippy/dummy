@@ -1,8 +1,7 @@
 #!/bin/bash
 sudo su
-
 yum update -y
-yum install -y httpd.x86_64
+yum install -y httpd
 systemctl start httpd.service
 systemctl enable httpd.service
-echo "hello from $(hostname)" > /var/www/html/index.html
+echo 1 > /var/www/html/index.html
