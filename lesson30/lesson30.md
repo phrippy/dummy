@@ -92,9 +92,19 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 ![EC2 Dashboard](ec2-dashboard.png)
 
-Для початку створимо пару ssh-ключів. Заходимо в `Key pairs` і натискаємо `Create key pair`:
+Для початку створимо пару ssh-ключів. Заходимо в `Key pairs` і натискаємо `Create key pair` або `Actions -> Import key pair`, в залежності від потреби. Для простоти я імпортую свій ключ із локальної машини, але в ідеалі треба створити новий:
 
 ![EC2 Keypairs Dashboard](ec2-keypairs_dashboard.png)
+
+Імпортуємо ключ з локальної машини (вивід команди `cat ~/.ssh/id_rsa.pub`):
+
+![EC2 Import local ssh-key](ec2-keypairs_import_localkey.png)
+
+Ключ успішно імпортовано:
+
+![EC2 Import local ssh-key success](ec2-keypairs_import_success.png)
+
+Тепер прийшла пора створити віртуальну машину, вона ж EC2. Натискаємо кнопку `Launch instance` в EC2 Dashboard.
 
 Вводимо імʼя, наприклад `server1`:
 
