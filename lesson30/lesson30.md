@@ -197,3 +197,26 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/ht
 Обираємо наші дві віртуальні машини EC2 і додаємо їх в Load Balancer:
 
 ![Load Balancer EC2](lb-ec2.png)
+
+На даному етапі теги нас не цікавлять, тому просто натискаємо `Review and Create`:
+
+![Load Balancer EC2](lb-tags.png)
+
+Перевіряємо, чи все правильно і тиснемо `Create`:
+
+![Load Balancer EC2](lb-create.png)
+
+Відкриваємо вкладку `Instances` і пересвідчуємося, що обидві віртуальні машини перебувають в статусі `InService`:
+
+![Load Balancer Dashboard](lb-dashboard.png)
+
+В стовпці `DNS name` знаходиться DNS-імʼя Load Balancer-а. Звісно, можна відкрити DNS-імʼя `myloadbalancer-1211606296.eu-central-1.elb.amazonaws.com` в браузері, але це скріншот не покаже його інтерактивної роботи. Тому для наглядності напишемо простенький скрипт:
+
+```bash
+#!/bin/bash
+URL='myloadbalancer-1211606296.eu-central-1.elb.amazonaws.com'
+for i in {1..9} ; do
+    echo "Attempt $i: $(curl -s ${URL})"
+		sleep 1
+done
+```
