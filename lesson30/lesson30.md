@@ -220,3 +220,8 @@ for i in {1..9} ; do
 		sleep 1
 done
 ```
+Спробуємо його запустити:
+
+![Load Balancer Checker](lb-check.png)
+
+Як бачимо, Load Balancer випадковим чином обирає один із серверів. Ціль досягнуто
