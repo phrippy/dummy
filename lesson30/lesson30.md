@@ -210,14 +210,14 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/ht
 
 ![Load Balancer Dashboard](lb-dashboard.png)
 
-В стовпці `DNS name` знаходиться DNS-імʼя Load Balancer-а. Звісно, можна відкрити DNS-імʼя `myloadbalancer-1211606296.eu-central-1.elb.amazonaws.com` в браузері, але це скріншот не покаже його інтерактивної роботи. Тому для наглядності напишемо простенький скрипт:
+В стовпці `DNS name` знаходиться DNS-імʼя Load Balancer-а. Звісно, можна відкрити DNS-імʼя `myloadbalancer-1211606296.eu-central-1.elb.amazonaws.com` в браузері, але скріншот не покаже його інтерактивної роботи. Тому для наглядності напишемо простенький скрипт:
 
 ```bash
 #!/bin/bash
 URL='myloadbalancer-1211606296.eu-central-1.elb.amazonaws.com'
 for i in {1..9} ; do
     echo "Attempt $i: $(curl -s ${URL})"
-		sleep 1
+    sleep 1
 done
 ```
 Спробуємо його запустити:
