@@ -110,6 +110,10 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 ![Вводимо імʼя для EC2](ec2-name.png)
 
+Обираємо раніше створений нами ssh-ключ:
+
+![Обираємо ssh-ключ для EC2](ec2-choose_key.png)
+
 # Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
 
 # Створюємо Load Balancer
