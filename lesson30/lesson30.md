@@ -86,6 +86,20 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 Вони знадобляться нам для налаштування веб-серверів nginx
 
+# Налаштовуємо фаєрвол
+
+Ідемо в Security Groups і відкриваємо групу default, яку надалі будемо використовувати у віртуальних машинах. Натискаємо кнопку `Edit inbound rules`:
+
+![Inbound rules dashboard](ec2-rules_pre.png)
+
+Відкриваємо порти 22 і 80 і нвтискаємо кнопку `Save rules`
+
+![Inbound rules set](ec2-rules_ready.png)
+
+Мережеві порти успішно налаштовано. В ідеалі, можна було б обмежити доступ до порту 22 лише для конкретної ip-адреси, але залишимо доступ для всіх
+
+![Inbound rules success](ec2-rules_success.png)
+
 # Створюємо EC2
 
 Заходимо в EC2 Dashboard:
