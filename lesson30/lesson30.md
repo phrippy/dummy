@@ -176,9 +176,16 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/ht
 
 Обираємо `Classic Load Balancer` і натискаємо `Create`:
 
-![Вибір Load Balancer-а](lb-classic.png):
+![Вибір Load Balancer-а](lb-classic.png)
 
 Тут просто обираємо імʼя для балансера і натискаємо Next:
 
-![Вибір Load Balancer-а](lb-define.png):
+![Вибір Load Balancer-а](lb-define.png)
 
+Тут обираємо вже існуючу групу Default:
+
+![Вибір Security Group для Load Balancer-а](lb-sg.png)
+
+Це попередження можна проігнорувати, оскільки в нас тестовий стенд і трафік без шифрування по протоколу HTTP. В реальних умовах, звісно ж, потрібно налаштувати HTTPS-доступ
+
+![Вибір Security Group для Load Balancer-а](lb-ssl.png)
