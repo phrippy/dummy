@@ -75,6 +75,17 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 # Дістаємо посилання на файли
 
+Відкриваємо наші файли в S3 bucket і зберігаємо Object URL:
+
+![Копіювання Object URL для файлу](s3-copy_object_url.png)
+
+Ми отримали два посилання:
+
+* https://phrippy-task30.s3.eu-central-1.amazonaws.com/1.txt
+* https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt
+
+Вони знадобляться нам для налаштування веб-серверів nginx
+
 # Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
 
 # Створюємо Load Balancer
