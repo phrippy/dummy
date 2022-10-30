@@ -189,3 +189,7 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/ht
 Це попередження можна проігнорувати, оскільки в нас тестовий стенд і трафік без шифрування по протоколу HTTP. В реальних умовах, звісно ж, потрібно налаштувати HTTPS-доступ
 
 ![Вибір Security Group для Load Balancer-а](lb-ssl.png)
+
+Параметри healthcheck залишаємо за замовчуванням, тут вони повністю підходять:
+
+![Load Balancer Healthcheck](lb-healthcheck.png)
