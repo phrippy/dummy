@@ -148,6 +148,14 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/1.txt > /var/www/ht
 
 ![Створюємо EC2](ec2-fill_userdata.png)
 
+Чекаємо, поки EC2 не набуде статусу `Running` і відкриваємо сторінку з деталями:
+
+![Інформація про EC2](ec2-info.png)
+
+Як бачимо, віртуальна машина має публічні IP та DNS-імʼя. Спробуємо відкрити IP в браузері:
+
+![Відриття IP EC2 в браузері](ec2-ip.png)
+
 # Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
 
 # Створюємо Load Balancer
