@@ -156,7 +156,29 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/1.txt > /var/www/ht
 
 ![Відриття IP EC2 в браузері](ec2-ip.png)
 
-# Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
+Схоже, все працює. Створимо ще одно віртуальну машину EC2, але тепер скопіюємо інший файл як основну сторінку для nginx:
+
+```bash
+#!/bin/bash
+sudo su
+yum update -y
+yum install -y httpd
+systemctl start httpd.service
+systemctl enable httpd.service
+curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/html/index.html
+```
 
 # Створюємо Load Balancer
+
+Відкриваємо сторінку Load Balancer і натискаємо кнопку `Create Load Balancer`:
+
+![Load Balancer Dashboard](lb-button.png)
+
+Обираємо `Classic Load Balancer` і натискаємо `Create`:
+
+![Вибір Load Balancer-а](lb-classic.png):
+
+Тут просто обираємо імʼя для балансера і натискаємо Next:
+
+![Вибір Load Balancer-а](lb-define.png):
 
