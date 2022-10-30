@@ -86,6 +86,20 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 Вони знадобляться нам для налаштування веб-серверів nginx
 
+# Створюємо EC2
+
+Заходимо в EC2 Dashboard:
+
+![EC2 Dashboard](ec2-dashboard.png)
+
+Для початку створимо пару ssh-ключів. Заходимо в `Key pairs` і натискаємо `Create key pair`:
+
+![EC2 Keypairs Dashboard](ec2-keypairs_dashboard.png)
+
+Вводимо імʼя, наприклад `server1`:
+
+![Вводимо імʼя для EC2](ec2-name.png)
+
 # Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
 
 # Створюємо Load Balancer
