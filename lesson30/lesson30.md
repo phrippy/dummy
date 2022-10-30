@@ -59,7 +59,11 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 Натискаємо кнопку `Add files` і завантажуємо файли 1.txt і 2.txt через стандартний інтерфейс браузера:
 
-![Вибір файлів для завантаження файлів в S3 bucket](s3-add_files.png)
+![Вибір файлів для завантаження в S3 bucket](s3-add_files.png)
+
+Розгортаємо блок `Permissions` і ставимо перемикач `Predefined ACLs` в положення `Grant public-read access`. Піднімаємо прапорець `I understand the risk of granting public-read access to the specified objects.`
+
+![Налаштування публічного доступу для файлів в S3 bucket](s3-upload_set_permissions.png)
 
 Файли готові для завантаження в S3 bucket. Натискаємо кнопку `Upload`:
 
