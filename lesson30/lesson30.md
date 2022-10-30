@@ -22,7 +22,7 @@
 
 Налаштуємо AWS cli, для цього запустимо команду `aws configure`
 
-![AWS cli успішно встановлено](aws-cli_version.png)
+![AWS cli успішно встановлено](aws-cli_configure.png)
 
 Як бачимо, було створено файли `~/.aws/config` і `~/.aws/credentials` 
 
