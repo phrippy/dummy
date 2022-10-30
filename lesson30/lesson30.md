@@ -114,6 +114,26 @@ for i in 1 2 ; do echo -n $i > $i.txt ; done
 
 ![Обираємо ssh-ключ для EC2](ec2-choose_key.png)
 
+Встановлюємо security group для EC2 - обираємо default для спрощення роботи:
+
+![Обираємо security group для EC2](ec2-choose_security_group.png)
+
+Розгортаємо блок `Advanced details` і гортаємо в кінець, до поля `User data`. Заповнюємо його вмістом скрипта, який встановить, налаштує і увімкне nginx:
+
+```bash
+#!/bin/bash
+sudo su
+yum update -y
+yum install -y httpd
+systemctl start httpd.service
+systemctl enable httpd.service
+curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/1.txt > /var/www/html/index.html
+```
+
+Налаштування EC2 завершено, натискаємо кнопку `Launch instance`:
+
+![Створюємо EC2](ec2-fill_userdata.png)
+
 # Створюємо EC2, в кінці вікна для налаштування вписуємо userdata, записуємо посилання із попереднього кроку в /var/www/html/index.html
 
 # Створюємо Load Balancer
