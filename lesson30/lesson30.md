@@ -193,3 +193,7 @@ curl -s https://phrippy-task30.s3.eu-central-1.amazonaws.com/2.txt > /var/www/ht
 Параметри healthcheck залишаємо за замовчуванням, тут вони повністю підходять:
 
 ![Load Balancer Healthcheck](lb-healthcheck.png)
+
+Обираємо наші дві віртуальні машини EC2 і додаємо їх в Load Balancer:
+
+![Load Balancer EC2](lb-ec2.png)
