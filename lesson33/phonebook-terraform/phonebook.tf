@@ -37,21 +37,31 @@ resource "aws_security_group" "phbook_sg" {
   name        = "Test security group for lesson 33"
   description = "HTTP and SSH"
 
+  dynamic "ingress" {
+    for_each = [["80", "HTTP"], ["22", "SSH"]]
+    content {
+      description = ingress.value[1]
+      from_port   = ingress.value[0]
+      to_port     = ingress.value[0]
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # ingress {
+  #   description = "HTTP"
+  #   from_port   = 80
+  #   to_port     = 80
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
+  # ingress {
+  #   description = "SSH"
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
   egress {
     from_port        = 0
     to_port          = 0
