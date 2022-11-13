@@ -8,8 +8,22 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "10.0.0.0/8"
+  
+  tags = {
+    Name = "lesson33"
+  }
+}
+
+resource "aws_subnet" "my_subnet" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = "10.10.0.0/16"
+  availability_zone = "us-west-2a"
+
+  tags = {
+    Name = "lesson33"
+  }
 }
 
 resource "aws_instance" "phonebook_instance" {
