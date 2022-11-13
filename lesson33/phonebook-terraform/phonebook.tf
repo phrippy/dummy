@@ -2,9 +2,13 @@ provider "aws" {
 # export AWS_ACCESS_KEY_ID = "AKIAXBMESHIKJH2WHGMC"
 # export AWS_SECRET_ACCESS_KEY = "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"
 # export AWS_DEFAULT_REGION = "eu-central-1"
-    access_key = "AKIAXBMESHIKJH2WHGMC"
-    secret_key = "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"
+    # access_key = "AKIAXBMESHIKJH2WHGMC"
+    # secret_key = "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"
     region = "eu-central-1"
+}
+
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_instance" "phonebook_instance" {
