@@ -17,7 +17,7 @@ resource "aws_instance" "phonebook_instance" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    # prevent_destroy = true
     # create_before_destroy = true
   }
 
