@@ -17,8 +17,8 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "192.168.0.0/16"
-
+  cidr_block           = "192.168.0.0/16"
+  enable_dns_hostnames = true
   tags = {
     Name = "lesson33"
   }
@@ -37,6 +37,7 @@ resource "aws_subnet" "my_subnet" {
 resource "aws_instance" "phonebook_instance" {
   ami                    = "ami-070b208e993b59cea"
   instance_type          = "t2.micro"
+  depends_on             = [aws_internet_gateway.gw]
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
   security_groups        = [aws_security_group.phbook_sg.id]
   # 		user_data = <<EOF
