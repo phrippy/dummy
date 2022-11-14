@@ -24,6 +24,47 @@ resource "aws_vpc" "my_vpc" {
   }
 }
 
+resource "aws_route_table_association" "my_route_table_association" {
+  subnet_id      = aws_subnet.my_subnet.id
+  route_table_id = aws_route_table.my_route_table.id
+}
+
+resource "aws_eip" "my_eip" {
+  vpc                       = true
+  network_interface         = aws_network_interface.my_netw_if.id
+  instance                  = aws_instance.phonebook_instance.id
+  associate_with_private_ip = "192.168.8.8"
+  depends_on                = [aws_internet_gateway.gw, aws_network_interface.my_netw_if]
+}
+
+resource "aws_network_interface" "my_netw_if" {
+  subnet_id       = aws_subnet.my_subnet.id
+  private_ips     = ["192.168.8.8"]
+  security_groups = [aws_security_group.phbook_sg.id]
+
+  tags = {
+    Name : "lesson33"
+  }
+}
+
+resource "aws_route_table" "my_route_table" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id      = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "lesson33"
+  }
+}
+
 resource "aws_subnet" "my_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "192.168.8.0/24"
@@ -36,37 +77,15 @@ resource "aws_subnet" "my_subnet" {
   }
 }
 
-resource "aws_eip" "my_eip" {
-  vpc = true
-
-  instance                  = aws_instance.phonebook_instance.id
-  associate_with_private_ip = "192.168.8.8"
-  depends_on                = [aws_internet_gateway.gw]
-}
-
-resource "aws_route_table" "my_route_table" {
-  vpc_id = aws_vpc.my_vpc.id
-
-  route {
-      cidr_block = "0.0.0.0/0"
-      gateway_id = aws_internet_gateway.gw.id
-  }
-
-  route {
-      ipv6_cidr_block        = "::/0"
-      gateway_id = aws_internet_gateway.gw.id
-  }
-
-  tags = {
-    Name = "lesson33"
-  }
-}
-
 resource "aws_instance" "phonebook_instance" {
-  ami                    = "ami-070b208e993b59cea"
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.my_subnet.id
-  private_ip             = "192.168.8.8"
+  ami           = "ami-070b208e993b59cea"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.my_subnet.id
+  private_ip    = "192.168.8.8"
+  network_interface {
+    device_index         = 0
+    network_interface_id = aws_network_interface.my_netw_if.id
+  }
   depends_on             = [aws_internet_gateway.gw]
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
   security_groups        = [aws_security_group.phbook_sg.id]
@@ -106,6 +125,7 @@ resource "aws_security_group" "phbook_sg" {
 
   # Allow ping
   ingress {
+    description = "PING"
     from_port   = 8
     to_port     = 0
     protocol    = "icmp"
