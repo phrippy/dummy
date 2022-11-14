@@ -44,6 +44,24 @@ resource "aws_eip" "my_eip" {
   depends_on                = [aws_internet_gateway.gw]
 }
 
+resource "aws_route_table" "my_route_table" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  route {
+      cidr_block = "0.0.0.0/0"
+      gateway_id = aws_internet_gateway.gw.id
+  }
+
+  route {
+      ipv6_cidr_block        = "::/0"
+      gateway_id = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "lesson33"
+  }
+}
+
 resource "aws_instance" "phonebook_instance" {
   ami                    = "ami-070b208e993b59cea"
   instance_type          = "t2.micro"
