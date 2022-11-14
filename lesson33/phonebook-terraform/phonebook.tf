@@ -8,28 +8,29 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_vpc" "my_vpc" {
-  cidr_block = "192.168.0.0/16"
+# resource "aws_vpc" "my_vpc" {
+#   cidr_block = "192.168.0.0/16"
 
-  tags = {
-    Name = "lesson33"
-  }
-}
+#   tags = {
+#     Name = "lesson33"
+#   }
+# }
 
-resource "aws_subnet" "my_subnet" {
-  vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "192.168.8.0/24"
-  # availability_zone = "eu-central-1a"
+# resource "aws_subnet" "my_subnet" {
+#   vpc_id     = aws_vpc.my_vpc.id
+#   cidr_block = "192.168.8.0/24"
+#   # availability_zone = "eu-central-1a"
 
-  tags = {
-    Name = "lesson33"
-  }
-}
+#   tags = {
+#     Name = "lesson33"
+#   }
+# }
 
 resource "aws_instance" "phonebook_instance" {
   ami                    = "ami-070b208e993b59cea"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
+  #security_groups        = [aws_security_group.phbook_sg]
   # 		user_data = <<EOF
   # #!/bin/bash
   # sudo su
@@ -46,11 +47,13 @@ resource "aws_instance" "phonebook_instance" {
   }
   associate_public_ip_address = true
   key_name                    = "my_ssh_key"
+  # subnet_id                   = aws_subnet.my_subnet.id
 }
 
 resource "aws_security_group" "phbook_sg" {
   name        = "Test security group for lesson 33"
   description = "HTTP and SSH"
+  # vpc_id      = aws_vpc.my_vpc.id
 
   dynamic "ingress" {
     for_each = [["80", "HTTP"], ["22", "SSH"]]
@@ -63,6 +66,22 @@ resource "aws_security_group" "phbook_sg" {
     }
   }
 
+  # Allow ping
+  ingress {
+    from_port   = 8
+    to_port     = 0
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow all ICMP
+  # ingress {
+  #   from_port   = -1
+  #   to_port     = -1
+  #   protocol    = "icmp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
+
   # ingress {
   #   description = "HTTP"
   #   from_port   = 80
@@ -70,6 +89,7 @@ resource "aws_security_group" "phbook_sg" {
   #   protocol    = "tcp"
   #   cidr_blocks = ["0.0.0.0/0"]
   # }
+
   # ingress {
   #   description = "SSH"
   #   from_port   = 22
