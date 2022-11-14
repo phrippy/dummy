@@ -8,6 +8,14 @@ provider "aws" {
   region = "eu-central-1"
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  tags = {
+    Name = "lesson33"
+  }
+}
+
 resource "aws_vpc" "my_vpc" {
   cidr_block = "192.168.0.0/16"
 
