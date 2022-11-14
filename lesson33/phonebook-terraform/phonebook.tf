@@ -28,15 +28,27 @@ resource "aws_subnet" "my_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "192.168.8.0/24"
   # availability_zone = "eu-central-1a"
+  map_public_ip_on_launch = true
+  depends_on              = [aws_internet_gateway.gw]
 
   tags = {
     Name = "lesson33"
   }
 }
 
+resource "aws_eip" "my_eip" {
+  vpc = true
+
+  instance                  = aws_instance.phonebook_instance.id
+  associate_with_private_ip = "192.168.8.8"
+  depends_on                = [aws_internet_gateway.gw]
+}
+
 resource "aws_instance" "phonebook_instance" {
   ami                    = "ami-070b208e993b59cea"
   instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.my_subnet.id
+  private_ip             = "192.168.8.8"
   depends_on             = [aws_internet_gateway.gw]
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
   security_groups        = [aws_security_group.phbook_sg.id]
@@ -56,7 +68,6 @@ resource "aws_instance" "phonebook_instance" {
   }
   associate_public_ip_address = true
   key_name                    = "my_ssh_key"
-  subnet_id                   = aws_subnet.my_subnet.id
 }
 
 resource "aws_security_group" "phbook_sg" {
