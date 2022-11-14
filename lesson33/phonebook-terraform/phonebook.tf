@@ -30,7 +30,7 @@ resource "aws_instance" "phonebook_instance" {
   ami                    = "ami-070b208e993b59cea"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
-  security_groups        = [aws_security_group.phbook_sg]
+  security_groups        = [aws_security_group.phbook_sg.id]
   # 		user_data = <<EOF
   # #!/bin/bash
   # sudo su
