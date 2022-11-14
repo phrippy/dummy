@@ -22,16 +22,16 @@ resource "aws_instance" "phonebook_instance" {
   }
 
   depends_on = [aws_internet_gateway.gw]
-  # 		user_data = <<EOF
-  # #!/bin/bash
-  # sudo su
-  # yum update -y
-  # yum install -y httpd
-  # systemctl start httpd.service
-  # systemctl enable httpd.service
-  # echo -n "xxx" > /var/www/html/index.html
-  # EOF
   user_data = file("userdata.sh")
+  # user_data  = <<EOF
+# #!/bin/bash
+# sudo su
+# yum update -y
+# yum install -y httpd
+# systemctl start httpd.service
+# systemctl enable httpd.service
+# echo -n "xxx" > /var/www/html/index.html
+# EOF
 
   tags = {
     Name  = "Test server for lesson 33"
