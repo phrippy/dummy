@@ -7,11 +7,11 @@ yum update -y
 # systemctl enable httpd.service
 # echo -n "xxx" > /var/www/html/index.html
 mysql --host ${host} \
---user=${user} \
---password=${pass} \
---port=${port} \
-${name} \
--e 'status' > /status.txt
+    --user=${user} \
+    --password=${pass} \
+    --port=${port} \
+    ${name} \
+    -e 'status' >/status.txt
 # cat <<EOF > /dev/null
 yum -y install httpd php mysql php-mysql
 
@@ -28,6 +28,9 @@ if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
     cd /var/www/html
     wget https://s3.amazonaws.com/immersionday-labs/bootcamp-app.tar
     tar xvf bootcamp-app.tar
+    cat <<EOF >/var/www/html/rds.conf.php
+<?php \$RDS_URL='${host}'; \$RDS_DB='${name}'; \$RDS_user='${user}'; \$RDS_pwd='${pass}'; ?>
+EOF
     chown apache:root /var/www/html/rds.conf.php
 fi
 # yum -y update
