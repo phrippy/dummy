@@ -2,17 +2,17 @@
 sudo su
 yum update -y
 # yum install -y httpd
-yum install -y httpd php mysql php-mysql
-systemctl start httpd.service
-systemctl enable httpd.service
+# yum install -y httpd php mysql php-mysql
+# systemctl start httpd.service
+# systemctl enable httpd.service
 # echo -n "xxx" > /var/www/html/index.html
 mysql --host ${host} \
 --user=${user} \
 --password=${pass} \
 --port=${port} \
 ${name} \
--e 'status' > /var/www/html/index.html
-cat <<EOF > /dev/null
+-e 'status' > /status.txt
+# cat <<EOF > /dev/null
 yum -y install httpd php mysql php-mysql
 
 case $(ps -p 1 -o comm | tail -1) in
@@ -30,5 +30,5 @@ if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
     tar xvf bootcamp-app.tar
     chown apache:root /var/www/html/rds.conf.php
 fi
-yum -y update
-EOF
+# yum -y update
+# EOF
