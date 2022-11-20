@@ -32,7 +32,7 @@ if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
 <?php \$RDS_URL='${host}'; \$RDS_DB='${name}'; \$RDS_user='${user}'; \$RDS_pwd='${pass}'; ?>
 EOF
     chown apache:root /var/www/html/rds.conf.php
-    mysql --host ${host} --user ${user} --password ${pass} --port ${port} < /var/www/html/sql/addressbook.sql
+    mysql --host ${host} --user ${user} --password ${pass} --port ${port} --force < /var/www/html/sql/addressbook.sql
 fi
 # yum -y update
 # EOF
