@@ -1,11 +1,11 @@
 resource "aws_db_instance" "database" {
   allocated_storage      = 10
-  db_name                = "mydb"
+  db_name                = var.db_name
   engine                 = "mysql"
   engine_version         = "8.0.31"
   instance_class         = "db.t3.micro"
-  username               = "foo"
-  password               = "foobarbaz"
+  username               = var.db_user
+  password               = var.db_pass
   parameter_group_name   = aws_db_parameter_group.default.name
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]

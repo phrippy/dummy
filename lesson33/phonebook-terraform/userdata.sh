@@ -11,7 +11,16 @@ yum -y install httpd php mysql php-mysql
 
 systemctl enable --now httpd
 
+echo until mysql --host ${host} --user ${user} --password ${pass} --port ${port} -e \'SELECT 1;\' >> /log.txt
 until mysql --host ${host} --user ${user} --password ${pass} --port ${port} -e \'SELECT 1;\'; do date >> /log.txt; done
+echo success >> /log.txt
+echo mysql --host ${host} \
+    --user=${user} \
+    --password=${pass} \
+    --port=${port} \
+    ${name} \
+    -e \'status\' >> /log.txt
+
 mysql --host ${host} \
     --user=${user} \
     --password=${pass} \
