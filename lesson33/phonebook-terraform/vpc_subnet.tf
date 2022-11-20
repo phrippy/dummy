@@ -73,7 +73,7 @@ resource "aws_security_group" "phbook_sg" {
   vpc_id      = aws_vpc.my_vpc.id
 
   dynamic "ingress" {
-    for_each = [["80", "HTTP"], ["22", "SSH"]]
+    for_each = [["80", "HTTP"], ["22", "SSH"], ["3306", "MySQL"]]
     content {
       description = ingress.value[1]
       from_port   = ingress.value[0]
