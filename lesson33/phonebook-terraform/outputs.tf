@@ -14,7 +14,7 @@ output "eip_instance_dns" {
   value = aws_eip.my_eip.public_dns
 }
 
-output "db_address" {
+output "db_server" {
   value = aws_db_instance.database.address
 }
 
@@ -23,13 +23,13 @@ output "db_port" {
 }
 
 output "db_user" {
-  value = aws_db_instance.database.username
+  value = var.db_user
 }
 
 output "db_pass" {
-  value = aws_db_instance.database.pass
+  value = var.db_pass
 }
 
 output "db_name" {
-  value = aws_db_instance.database.name
+  value = var.db_name
 }
