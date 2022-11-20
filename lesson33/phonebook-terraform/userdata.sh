@@ -1,11 +1,12 @@
 #!/bin/bash
 sudo su
-# yum update -y
-# yum install -y httpd
-# systemctl start httpd.service
-# systemctl enable httpd.service
-# echo -n "xxx" > /var/www/html/index.html
+yum update -y
+yum install -y httpd
+systemctl start httpd.service
+systemctl enable httpd.service
+echo -n "xxx" > /var/www/html/index.html
 
+cat <<EOF > /dev/null
 yum -y install httpd php mysql php-mysql
 
 case $(ps -p 1 -o comm | tail -1) in
@@ -24,3 +25,4 @@ if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
     chown apache:root /var/www/html/rds.conf.php
 fi
 yum -y update
+EOF
