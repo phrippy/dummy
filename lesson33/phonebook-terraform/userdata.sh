@@ -6,23 +6,18 @@ yum update -y
 # systemctl start httpd.service
 # systemctl enable httpd.service
 # echo -n "xxx" > /var/www/html/index.html
+yum -y install httpd php mysql php-mysql
+# cat <<EOF > /dev/null
+
+systemctl enable --now httpd
+
+until mysql --host ${host} --user ${user} --password ${pass} --port ${port} -e \'SELECT 1;\'; do date >> /log.txt; done
 mysql --host ${host} \
     --user=${user} \
     --password=${pass} \
     --port=${port} \
     ${name} \
-    -e 'status' >/status.txt
-# cat <<EOF > /dev/null
-yum -y install httpd php mysql php-mysql
-
-case $(ps -p 1 -o comm | tail -1) in
-systemd) systemctl enable --now httpd ;;
-init)
-    chkconfig httpd on
-    service httpd start
-    ;;
-*) echo "Error starting httpd (OS not using init or systemd)." 2>&1 ;;
-esac
+    -e \'status\' > /status.txt
 
 if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
     cd /var/www/html
@@ -32,7 +27,8 @@ if [ ! -f /var/www/html/bootcamp-app.tar.gz ]; then
 <?php \$RDS_URL='${host}'; \$RDS_DB='${name}'; \$RDS_user='${user}'; \$RDS_pwd='${pass}'; ?>
 EOF
     chown apache:root /var/www/html/rds.conf.php
-    mysql --host ${host} --user ${user} --password ${pass} --port ${port} --force < /var/www/html/sql/addressbook.sql
+    mysql --host ${host} --user ${user} --password ${pass} --port ${port} < /var/www/html/sql/addressbook.sql
+    echo $? > /result.txt
 fi
 # yum -y update
 # EOF
