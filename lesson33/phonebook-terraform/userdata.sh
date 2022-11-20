@@ -1,11 +1,17 @@
 #!/bin/bash
 sudo su
 yum update -y
-yum install -y httpd
+# yum install -y httpd
+yum install -y httpd php mysql php-mysql
 systemctl start httpd.service
 systemctl enable httpd.service
-echo -n "xxx" > /var/www/html/index.html
-
+# echo -n "xxx" > /var/www/html/index.html
+mysql --host ${host} \
+--user=${user} \
+--password=${pass} \
+--port=${port} \
+${name} \
+-e 'status' > /var/www/html/index.html
 cat <<EOF > /dev/null
 yum -y install httpd php mysql php-mysql
 
