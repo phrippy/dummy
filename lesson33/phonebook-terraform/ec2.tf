@@ -21,17 +21,25 @@ resource "aws_instance" "phonebook_instance" {
     # create_before_destroy = true
   }
 
-  depends_on = [aws_internet_gateway.gw]
-  user_data = file("userdata.sh")
+  depends_on = [aws_internet_gateway.gw, aws_db_instance.database]
+  # user_data = file("userdata.sh")
+  
+ user_data = templatefile("userdata.sh", {
+    host = aws_db_instance.database.address,
+    port   = aws_db_instance.database.port,
+    user   = var.db_user,
+    pass   = var.db_pass,
+    name   = var.db_name
+  })
   # user_data  = <<EOF
-# #!/bin/bash
-# sudo su
-# yum update -y
-# yum install -y httpd
-# systemctl start httpd.service
-# systemctl enable httpd.service
-# echo -n "xxx" > /var/www/html/index.html
-# EOF
+  # #!/bin/bash
+  # sudo su
+  # yum update -y
+  # yum install -y httpd
+  # systemctl start httpd.service
+  # systemctl enable httpd.service
+  # echo -n "xxx" > /var/www/html/index.html
+  # EOF
 
   tags = {
     Name  = "Test server for lesson 33"
