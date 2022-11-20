@@ -7,9 +7,21 @@ resource "aws_vpc" "my_vpc" {
 }
 
 resource "aws_subnet" "my_subnet" {
-  vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = "192.168.8.0/24"
-  # availability_zone = "eu-central-1a"
+  vpc_id                  = aws_vpc.my_vpc.id
+  cidr_block              = "192.168.8.0/24"
+  availability_zone       = "eu-central-1a"
+  map_public_ip_on_launch = true
+  depends_on              = [aws_internet_gateway.gw]
+
+  tags = {
+    Name = "lesson33"
+  }
+}
+
+resource "aws_subnet" "my_subnet1" {
+  vpc_id                  = aws_vpc.my_vpc.id
+  cidr_block              = "192.168.9.0/24"
+  availability_zone       = "eu-central-1b"
   map_public_ip_on_launch = true
   depends_on              = [aws_internet_gateway.gw]
 
