@@ -10,6 +10,7 @@ resource "aws_db_instance" "database" {
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.phbook_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.my_db_subnet_group.name
+  publicly_accessible    = true
 }
 
 # data "aws_db_subnet_group" "database" {
